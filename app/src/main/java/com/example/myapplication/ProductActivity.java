@@ -3,29 +3,21 @@ package com.example.myapplication;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.Product;
-import com.example.myapplication.Attribute;
-import com.google.gson.Gson;
+import com.example.myapplication.ProductService;
+import com.example.myapplication.ProductServiceImpl;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-import java.io.IOException;
+import java.util.List;
 
 public class ProductActivity extends AppCompatActivity {
 
     private TextView productName, productDescription, productPrice, categoryName;
     private LinearLayout attributesContainer;
-
-    private OkHttpClient client = new OkHttpClient();
-    private Gson gson = new Gson();
-    private String url = "https://bdqcjjh9-7207.euw.devtunnels.ms/product/4";
+    private ProductService productService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +30,28 @@ public class ProductActivity extends AppCompatActivity {
         categoryName = findViewById(R.id.categoryName);
         attributesContainer = findViewById(R.id.attributesContainer);
 
-        fetchProduct();
+        productService = new ProductServiceImpl();
+
+        // Fetching product by ID
+        int productId = 6;  // This is an int now
+        fetchProductById(productId);
     }
 
-    private void fetchProduct() {
-        Request request = new Request.Builder().url(url).build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
+    private void fetchProductById(int productId) {
+        productService.getById(productId, new ProductService.ProductServiceCallback() {
+            @Override
+            public void onProductFetched(Product product) {
+                showProduct(product);
             }
 
-            @Override public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    final Product product = gson.fromJson(response.body().string(), Product.class);
+            @Override
+            public void onProductsFetched(List<Product> products) {
+                // Handle case if you were fetching a list of products (not used here)
+            }
 
-                    runOnUiThread(() -> showProduct(product));
-                }
+            @Override
+            public void onFailure(String error) {
+                Toast.makeText(ProductActivity.this, error, Toast.LENGTH_SHORT).show();
             }
         });
     }

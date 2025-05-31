@@ -5,7 +5,9 @@ import android.os.Looper;
 
 import com.example.myapplication.Product;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -19,11 +21,11 @@ public class ProductServiceImpl implements ProductService {
     private final Gson gson = new Gson();
     private final Handler handler = new Handler(Looper.getMainLooper());
 
-    private static final String BASE_URL = "https://bdqcjjh9-7207.euw.devtunnels.ms/";
+    private static final String BASE_URL = "https://3j197lbc-7207.euw.devtunnels.ms/";
 
     @Override
     public void getById(int productId, ProductServiceCallback callback) {
-        String url = BASE_URL + "product/" + productId;  // Using int productId in URL
+        String url = BASE_URL + "products/" + productId;  // Using int productId in URL
 
         Request request = new Request.Builder().url(url).build();
 
@@ -59,13 +61,26 @@ public class ProductServiceImpl implements ProductService {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()) {
-                    List<Product> products = gson.fromJson(response.body().string(), List.class);
-                    handler.post(() -> callback.onProductsFetched(products));
+                if (response.isSuccessful() && response.body() != null) {
+                    try {
+                        // Read response body
+                        String json = response.body().string();
+
+                        // Parse JSON into List<Product> using TypeToken
+                        Type productListType = new TypeToken<List<Product>>() {}.getType();
+                        List<Product> products = gson.fromJson(json, productListType);
+
+                        // Post result to callback on main thread
+                        handler.post(() -> callback.onProductsFetched(products));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        handler.post(() -> callback.onFailure("Parsing failed: " + e.getMessage()));
+                    }
                 } else {
-                    handler.post(() -> callback.onFailure("Error: " + response.code()));
+                    handler.post(() -> callback.onFailure("Server error: " + response.code()));
                 }
             }
+
         });
     }
 }

@@ -1,15 +1,19 @@
 package com.example.myapplication;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.Product;
 import com.example.myapplication.ProductService;
 import com.example.myapplication.ProductServiceImpl;
+
 
 import java.util.List;
 
@@ -18,6 +22,7 @@ public class ProductActivity extends AppCompatActivity {
     private TextView productName, productDescription, productPrice, categoryName;
     private LinearLayout attributesContainer;
     private ProductService productService;
+    private ImageView productImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +34,12 @@ public class ProductActivity extends AppCompatActivity {
         productPrice = findViewById(R.id.productPrice);
         categoryName = findViewById(R.id.categoryName);
         attributesContainer = findViewById(R.id.attributesContainer);
+        productImage = findViewById(R.id.productImage);
 
         productService = new ProductServiceImpl();
 
         // Fetching product by ID
-        int productId = 6;  // This is an int now
+        int productId = 12;  // This is an int now
         fetchProductById(productId);
     }
 
@@ -58,6 +64,9 @@ public class ProductActivity extends AppCompatActivity {
 
     private void showProduct(Product product) {
         productName.setText(product.name);
+        Glide.with(getApplicationContext())
+                .load(product.images.get(0))
+                .into(productImage);
         productDescription.setText(product.description);
         productPrice.setText("Price: $" + product.price);
         categoryName.setText("Category: " + product.categoryDto.name + " > " + product.categoryDto.parentCategoryName);

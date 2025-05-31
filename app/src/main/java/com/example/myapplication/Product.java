@@ -11,4 +11,5 @@ public class Product {
     public Category categoryDto;
     public String createdByUserId;
     public List<Attribute> attributes;
+    public List<String> images;
 }

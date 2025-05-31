@@ -6,8 +6,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -22,45 +25,43 @@ public class MainActivity extends AppCompatActivity {
 
     Button button, button2, button3, button4;
 
+    BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ProductActivity.class);
-                startActivity(intent);
+
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        loadFragment(new FragmentHome()); // Default fragment
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment fragment = null;
+            int id = item.getItemId();
+
+            if (id == R.id.nav_home) {
+                fragment = new FragmentHome();
+            } else if (id == R.id.nav_profile) {
+                fragment = new FragmentProfile();
             }
+
+            if (fragment != null) {
+                loadFragment(fragment);
+                return true;
+            }
+
+            return false;
         });
 
-        button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ProductsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        button3 = findViewById(R.id.button3);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        button4 = findViewById(R.id.button4);
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, UserRegistrationActivity.class);
-                startActivity(intent);
-            }
-        });
     }
+
+    private void loadFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit();
+    }
+
+
 }

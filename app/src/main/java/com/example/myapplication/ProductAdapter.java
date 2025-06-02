@@ -28,8 +28,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             imageView = itemView.findViewById(R.id.imageView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
             priceTextView = itemView.findViewById(R.id.priceTextView);
-            originalPriceTextView = itemView.findViewById(R.id.originalPriceTextView);
-            discountTextView = itemView.findViewById(R.id.discountTextView);
         }
     }
 

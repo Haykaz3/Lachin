@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentHome"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="4">
-
         <RelativeLayout
             android:layout_weight="1"
             android:id="@+id/topPanel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="50dp">
 
 
             <TextView
@@ -59,92 +53,55 @@
         </RelativeLayout>
 
         <ImageView
+            android:id="@+id/line"
+            android:layout_below="@id/topPanel"
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:background="@drawable/rectangle_nb"
             android:layout_marginVertical="5dp"/>
 
-        <RelativeLayout
-            android:layout_weight="1"
+    <RelativeLayout
+        android:id="@+id/search_bar"
+        android:layout_below="@id/line"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginHorizontal="5dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/rectangle_sch"
+        android:elevation="3dp"
+        android:outlineAmbientShadowColor="@color/black">
+
+        <EditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/rectangle_sch"
-            android:layout_marginHorizontal="5dp"
-            android:outlineAmbientShadowColor="@color/black"
-            android:elevation="3dp"
-            android:layout_marginBottom="10dp">
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/transparent"
+            android:hint="Search Product Name"
+            android:textSize="15sp" />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="15dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentStart="true"
-                android:textSize="15sp"
-                android:hint="Search Product Name"
-                android:background="@color/transparent"/>
-
-            <ImageView
-                android:backgroundTint="@color/green_dark"
-                android:id="@+id/search"
-                android:layout_centerVertical="true"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginVertical="10dp"
-                android:layout_marginEnd="25dp"
-                android:background="@drawable/search_icon"
-                android:layout_alignParentEnd="true"/>
+        <ImageView
+            android:id="@+id/search"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginVertical="10dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/search_icon"
+            android:backgroundTint="@color/green_dark" />
 
 
-        </RelativeLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_marginTop="10dp"
-        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/topPanel"/>
+        android:layout_below="@+id/search_bar"/>
 
-
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/recyclerView"
-        android:orientation="vertical">
-
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:text="button" />
-
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:text="button2" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:text="button3" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:text="button4" />
-
-    </LinearLayout>
-
-
-</LinearLayout>
+</RelativeLayout>

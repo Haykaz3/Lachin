@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentAdd">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout android:id="@+id/form_container"
+        android:orientation="vertical"
+        android:padding="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Adddddddddd" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <EditText android:id="@+id/etName" android:hint="Name" style="@style/Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <EditText android:id="@+id/etDescription" android:hint="Description" android:layout_height="50dp" android:layout_width="match_parent"/>
+        <EditText android:id="@+id/etPrice" android:hint="Price" android:inputType="numberDecimal" android:layout_height="50dp" android:layout_width="match_parent"/>
+        <EditText android:id="@+id/etCity" android:hint="City" android:layout_height="50dp" android:layout_width="match_parent"/>
+        <EditText android:id="@+id/etRegion" android:hint="Region" android:layout_height="50dp" android:layout_width="match_parent"/>
+        <EditText android:id="@+id/etStatus" android:hint="Status" android:layout_height="50dp" android:layout_width="match_parent"/>
+        <Spinner android:id="@+id/spinnerCategory" android:layout_height="50dp" android:layout_width="match_parent"/>
+
+        <LinearLayout android:id="@+id/attributesContainer"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Button android:id="@+id/btnSelectImages" android:text="Select Images" android:layout_height="50dp" android:layout_width="match_parent"/>
+        <Button android:id="@+id/btnSubmit" android:text="Submit Product" android:layout_height="50dp" android:layout_width="match_parent"/>
+    </LinearLayout>
+
+</ScrollView>

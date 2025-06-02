@@ -5,4 +5,8 @@ public class Category {
     public String name;
     public int parentCategoryId;
     public String parentCategoryName;
+    @Override
+    public String toString() {
+        return name;
+    }
 }

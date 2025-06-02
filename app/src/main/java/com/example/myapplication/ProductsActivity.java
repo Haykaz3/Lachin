@@ -39,7 +39,7 @@ public class ProductsActivity extends AppCompatActivity {
             public void onProductsFetched(List<Product> products) {
                 // Update RecyclerView on UI thread
                 runOnUiThread(() -> {
-                    adapter = new ProductAdapter(ProductsActivity.this, products);
+                    adapter = new ProductAdapter(products,ProductsActivity.this);
                     recyclerView.setAdapter(adapter);
                 });
             }

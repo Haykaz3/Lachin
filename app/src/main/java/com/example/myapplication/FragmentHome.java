@@ -4,11 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +31,10 @@ public class FragmentHome extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private RecyclerView recyclerView;
+    private ProductAdapter adapter;
+    private ProductService productService;
+    private List<Product> productList;
 
     Button button, button2, button3, button4;
 
@@ -58,6 +68,8 @@ public class FragmentHome extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,6 +114,34 @@ public class FragmentHome extends Fragment {
             }
         });
 
+
+
+        recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2)); // 2 columns like your screenshot
+        productService = new ProductServiceImpl();
+        productList = new ArrayList<>();
+        productService.getAll(new ProductService.ProductServiceCallback() {
+            @Override
+            public void onProductFetched(Product product) {
+                // Not needed here
+            }
+
+            @Override
+            public void onProductsFetched(List<Product> products) {
+                // Update RecyclerView on UI thread
+                requireActivity().runOnUiThread(() -> {
+                    adapter = new ProductAdapter(products, getContext());
+                    recyclerView.setAdapter(adapter);
+                });
+            }
+
+            @Override
+            public void onFailure(String error) {
+                requireActivity().runOnUiThread(() ->
+                        Toast.makeText(getContext(), "Failed: " + error, Toast.LENGTH_SHORT).show()
+                );
+            }
+        });
 
         return view;
 

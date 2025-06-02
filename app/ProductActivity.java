@@ -1,23 +1,5 @@
-package com.example.myapplication;
-
-import android.content.Context;
-import android.os.Build;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-
-import java.util.List;
-
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private List<Product> productList;
-    private Context context;
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
@@ -33,9 +15,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
     }
 
-    public ProductAdapter(List<Product> productList, Context context) {
+    public ProductAdapter(List<Product> productList) {
         this.productList = productList;
-        this.context = context;
     }
 
     @Override
@@ -47,21 +28,22 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         Product product = productList.get(position);
-        if (!product.images.isEmpty())
-        {
-            Glide.with(context)
-                    .load(product.images.get(0))
-                    .into(holder.imageView);
-        }
-        //holder.imageView.setImageResource(product.getImageResId());
-        holder.nameTextView.setText(product.name);
-        holder.priceTextView.setText("$" + product.price);
+        holder.imageView.setImageResource(product.getImageResId());
+        holder.nameTextView.setText(product.getName());
+        holder.priceTextView.setText("$" + product.getPrice());
 
-        if (product.price > 0) {
-            holder.originalPriceTextView.setText("$" + product.price);
+        if (product.getOriginalPrice() != null) {
+            holder.originalPriceTextView.setText("$" + product.getOriginalPrice());
             holder.originalPriceTextView.setVisibility(View.VISIBLE);
         } else {
             holder.originalPriceTextView.setVisibility(View.GONE);
+        }
+
+        if (product.getDiscountPercent() != null) {
+            holder.discountTextView.setText(product.getDiscountPercent() + "%");
+            holder.discountTextView.setVisibility(View.VISIBLE);
+        } else {
+            holder.discountTextView.setVisibility(View.GONE);
         }
     }
 

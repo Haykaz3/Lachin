@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
     private final Gson gson = new Gson();
     private final Handler handler = new Handler(Looper.getMainLooper());
 
-    private static final String BASE_URL = "https://3j197lbc-7207.euw.devtunnels.ms/";
+    private static final String BASE_URL = "https://brkpgt18-7207.uks1.devtunnels.ms/";
 
     @Override
     public void getById(int productId, ProductServiceCallback callback) {

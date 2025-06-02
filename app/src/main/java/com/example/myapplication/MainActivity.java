@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         loadFragment(new FragmentHome()); // Default fragment
 

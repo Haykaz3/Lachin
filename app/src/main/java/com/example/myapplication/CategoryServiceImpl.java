@@ -22,7 +22,7 @@ public class CategoryServiceImpl implements CategoryService {
     private final Gson gson = new Gson();
     private final Handler handler = new Handler(Looper.getMainLooper());
 
-    private static final String BASE_URL = "https://3j197lbc-7207.euw.devtunnels.ms/";  // Change to your actual API URL
+    private static final String BASE_URL = "https://brkpgt18-7207.uks1.devtunnels.ms/";  // Change to your actual API URL
 
     @Override
     public void getCategories(final CategoryServiceCallback callback) {

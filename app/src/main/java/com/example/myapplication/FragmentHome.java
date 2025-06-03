@@ -83,28 +83,28 @@ public class FragmentHome extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2)); // 2 columns like your screenshot
         productService = new ProductServiceImpl();
         productList = new ArrayList<>();
-//        productService.getAll(new ProductService.ProductServiceCallback() {
-//            @Override
-//            public void onProductFetched(Product product) {
-//                // Not needed here
-//            }
-//
-//            @Override
-//            public void onProductsFetched(List<Product> products) {
-//                // Update RecyclerView on UI thread
-//                requireActivity().runOnUiThread(() -> {
-//                    adapter = new ProductAdapter(products, getContext());
-//                    recyclerView.setAdapter(adapter);
-//                });
-//            }
-//
-//            @Override
-//            public void onFailure(String error) {
-//                requireActivity().runOnUiThread(() ->
-//                        Toast.makeText(getContext(), "Failed: " + error, Toast.LENGTH_SHORT).show()
-//                );
-//            }
-//        });
+        productService.getAll(new ProductService.ProductServiceCallback() {
+            @Override
+            public void onProductFetched(Product product) {
+                // Not needed here
+            }
+
+            @Override
+            public void onProductsFetched(List<Product> products) {
+                // Update RecyclerView on UI thread
+                requireActivity().runOnUiThread(() -> {
+                    adapter = new ProductAdapter(products, getContext());
+                    recyclerView.setAdapter(adapter);
+                });
+            }
+
+            @Override
+            public void onFailure(String error) {
+                requireActivity().runOnUiThread(() ->
+                        Toast.makeText(getContext(), "Failed: " + error, Toast.LENGTH_SHORT).show()
+                );
+            }
+        });
 
         return view;
 

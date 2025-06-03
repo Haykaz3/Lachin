@@ -1,7 +1,10 @@
 package com.example.myapplication;
 
+import static android.view.View.INVISIBLE;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -15,10 +18,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -43,8 +50,12 @@ public class FragmentAdd extends Fragment {
     private String mParam1;
     private String mParam2;
     private EditText nameInput, descriptionInput, priceInput, cityInput, regionInput, statusInput, categoryIdInput, userIdInput;
-    private Button selectImagesButton, submitButton;
+    private Button submitButton;
+
+    private ImageButton selectImagesButton;
     private Spinner categorySpinner;
+
+    private TextView text;
     private LinearLayout attributesContainer;
     private List<Category> categoryList;
     private Map<Integer, EditText> attributeInputs = new HashMap<>();
@@ -52,6 +63,8 @@ public class FragmentAdd extends Fragment {
     private CategoryService categoryService;
     private AttributeService attributeService;
     private ProductService productService;
+
+    private ImageView image;
 
     private List<Uri> selectedImageUris = new ArrayList<>();
 
@@ -99,10 +112,14 @@ public class FragmentAdd extends Fragment {
         cityInput = view.findViewById(R.id.etCity);
         regionInput = view.findViewById(R.id.etRegion);
         statusInput = view.findViewById(R.id.etStatus);
+
+        image = view.findViewById(R.id.image);
+        text = view.findViewById(R.id.text);
         //categoryIdInput = view.findViewById(R.id.cate);
 
         selectImagesButton = view.findViewById(R.id.btnSelectImages);
         submitButton = view.findViewById(R.id.btnSubmit);
+
 
         categoryService = new CategoryServiceImpl(); // Implement this
         attributeService = new com.example.myapplication.services.AttributeServiceImpl(); // Implement this
@@ -146,11 +163,17 @@ public class FragmentAdd extends Fragment {
                 {
                     selectedImageUris.add(data.getClipData().getItemAt(i).getUri());
                 }
+
             } else if (data.getData() != null) {
                 selectedImageUris.add(data.getData());
 
             }
             Toast.makeText(getContext(), selectedImageUris.size() + "image(s) selected", Toast.LENGTH_SHORT).show();
+            Glide.with(getActivity())
+                    .load(selectedImageUris.get(0))
+                    .into(image);
+
+            text.setVisibility(INVISIBLE);
         }
     }
     private void loadCategories()

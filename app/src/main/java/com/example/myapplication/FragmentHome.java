@@ -78,70 +78,33 @@ public class FragmentHome extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
 
-        button = view.findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        button2 = view.findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ProductsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        button3 = view.findViewById(R.id.button3);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CategoryActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        button4 = view.findViewById(R.id.button4);
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), UserRegistrationActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
 
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2)); // 2 columns like your screenshot
         productService = new ProductServiceImpl();
         productList = new ArrayList<>();
-        productService.getAll(new ProductService.ProductServiceCallback() {
-            @Override
-            public void onProductFetched(Product product) {
-                // Not needed here
-            }
-
-            @Override
-            public void onProductsFetched(List<Product> products) {
-                // Update RecyclerView on UI thread
-                requireActivity().runOnUiThread(() -> {
-                    adapter = new ProductAdapter(products, getContext());
-                    recyclerView.setAdapter(adapter);
-                });
-            }
-
-            @Override
-            public void onFailure(String error) {
-                requireActivity().runOnUiThread(() ->
-                        Toast.makeText(getContext(), "Failed: " + error, Toast.LENGTH_SHORT).show()
-                );
-            }
-        });
+//        productService.getAll(new ProductService.ProductServiceCallback() {
+//            @Override
+//            public void onProductFetched(Product product) {
+//                // Not needed here
+//            }
+//
+//            @Override
+//            public void onProductsFetched(List<Product> products) {
+//                // Update RecyclerView on UI thread
+//                requireActivity().runOnUiThread(() -> {
+//                    adapter = new ProductAdapter(products, getContext());
+//                    recyclerView.setAdapter(adapter);
+//                });
+//            }
+//
+//            @Override
+//            public void onFailure(String error) {
+//                requireActivity().runOnUiThread(() ->
+//                        Toast.makeText(getContext(), "Failed: " + error, Toast.LENGTH_SHORT).show()
+//                );
+//            }
+//        });
 
         return view;
 

@@ -79,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
             if (fragment != null) {
                 loadFragment(fragment);
                 return true;
+            }else {
+                loadFragment(new FragmentHome());
             }
 
             return false;

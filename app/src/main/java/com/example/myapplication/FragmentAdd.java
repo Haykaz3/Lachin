@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -66,6 +67,8 @@ public class FragmentAdd extends Fragment {
 
     private ImageView image;
 
+    LinearLayout imageContainer;
+
     private List<Uri> selectedImageUris = new ArrayList<>();
 
     public FragmentAdd() {
@@ -113,7 +116,9 @@ public class FragmentAdd extends Fragment {
         regionInput = view.findViewById(R.id.etRegion);
         statusInput = view.findViewById(R.id.etStatus);
 
-        image = view.findViewById(R.id.image);
+        imageContainer = view.findViewById(R.id.image_container);
+
+
         text = view.findViewById(R.id.text);
         //categoryIdInput = view.findViewById(R.id.cate);
 
@@ -169,11 +174,40 @@ public class FragmentAdd extends Fragment {
 
             }
             Toast.makeText(getContext(), selectedImageUris.size() + "image(s) selected", Toast.LENGTH_SHORT).show();
-            Glide.with(getActivity())
-                    .load(selectedImageUris.get(0))
-                    .into(image);
 
             text.setVisibility(INVISIBLE);
+            imageContainer.removeAllViews(); // Optional: clear previous images if needed
+
+            for (Uri imageUri : selectedImageUris) {
+                // Create a CardView
+                CardView cardView = new CardView(getActivity());
+                LinearLayout.LayoutParams cardParams = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+                cardParams.setMargins(16, 0, 16, 0); // spacing between cards
+                cardView.setLayoutParams(cardParams);
+                cardView.setRadius(16f);
+                cardView.setCardElevation(8f);
+
+                // Create an ImageView inside the CardView
+                ImageView imageView = new ImageView(getActivity());
+                int height = imageContainer.getHeight();
+                LinearLayout.LayoutParams imageParams = new LinearLayout.LayoutParams(height, height);
+                imageView.setLayoutParams(imageParams);
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+                // Load image with Glide
+                Glide.with(this)
+                        .load(imageUri)
+                        .into(imageView);
+
+                // Add ImageView to CardView
+                cardView.addView(imageView);
+
+                // Add CardView to the container
+                imageContainer.addView(cardView);
+            }
         }
     }
     private void loadCategories()

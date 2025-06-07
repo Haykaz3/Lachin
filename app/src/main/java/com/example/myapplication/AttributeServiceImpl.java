@@ -1,4 +1,4 @@
-package com.example.myapplication.services;
+package com.example.myapplication;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -20,14 +20,14 @@ import okhttp3.Response;
 
 public class AttributeServiceImpl implements AttributeService {
 
-    private static final String BASE_URL = "https://brkpgt18-7207.uks1.devtunnels.ms/definitions/";
+    private static final String BASE_URL = "https://brkpgt18-7207.uks1.devtunnels.ms/";
     private final OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     @Override
     public void getAttributesByCategory(int categoryId, AttributeCallback callback) {
-        String url = BASE_URL + categoryId;
+        String url = BASE_URL + "definitions/" +categoryId;
 
         Request request = new Request.Builder()
                 .url(url)

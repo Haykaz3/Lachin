@@ -127,7 +127,7 @@ public class FragmentAdd extends Fragment {
 
 
         categoryService = new CategoryServiceImpl(); // Implement this
-        attributeService = new com.example.myapplication.services.AttributeServiceImpl(); // Implement this
+        attributeService = new com.example.myapplication.AttributeServiceImpl(); // Implement this
         productService = new ProductServiceImpl();
 
         loadCategories();

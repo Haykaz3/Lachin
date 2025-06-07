@@ -54,13 +54,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         //holder.imageView.setImageResource(product.getImageResId());
         holder.nameTextView.setText(product.name);
         holder.priceTextView.setText("$" + product.price);
-
-        if (product.price > 0) {
-            holder.originalPriceTextView.setText("$" + product.price);
-            holder.originalPriceTextView.setVisibility(View.VISIBLE);
-        } else {
-            holder.originalPriceTextView.setVisibility(View.GONE);
-        }
     }
 
     @Override

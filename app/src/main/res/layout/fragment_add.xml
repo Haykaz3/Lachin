@@ -189,20 +189,16 @@
                     android:layout_centerVertical="true"
                     android:paddingHorizontal="15dp"
                     android:paddingVertical="3dp" />
-
-                <LinearLayout
-                    android:id="@+id/attributesContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/spinnerCategory"
-                    android:layout_marginTop="6dp"
-                    android:orientation="vertical" />
-
-
             </RelativeLayout>
 
 
-
+            <LinearLayout
+                android:id="@+id/attributesContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinnerCategory"
+                android:layout_marginTop="6dp"
+                android:orientation="vertical" />
 
 
             <RelativeLayout

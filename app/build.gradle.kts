@@ -44,7 +44,8 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
-
+    implementation("com.microsoft.signalr:signalr:7.0.5")
     implementation ("com.google.android.material:material:1.11.0")
+    implementation("org.slf4j:slf4j-jdk14:1.7.25")
 
 }

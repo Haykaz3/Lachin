@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     private final Gson gson = new Gson();
     private final Handler handler = new Handler(Looper.getMainLooper());
 
-    private static final String BASE_URL = "https://brkpgt18-7207.uks1.devtunnels.ms/";  // Change to your actual API URL
+    private static final String BASE_URL = "https://tr4m9tkv-7207.euw.devtunnels.ms/";  // Change to your actual API URL
 
     @Override
     public void registerUser(User user, final UserServiceCallback callback) {

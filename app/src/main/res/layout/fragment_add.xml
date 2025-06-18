@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    style="@style/page_bg"
     tools:context=".FragmentAdd">
 
     <RelativeLayout
@@ -17,7 +19,8 @@
             android:layout_centerVertical="true"
             android:text="Add Product"
             android:textColor="@color/green_dark"
-            android:textSize="25sp" />
+            android:fontFamily="@font/dmsansbold"
+            android:textSize="21dp" />
 
 
     </RelativeLayout>
@@ -31,251 +34,469 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <LinearLayout
-            android:id="@+id/form_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <RelativeLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="6dp">
-
-                <RelativeLayout
-                    android:id="@+id/name_lay"
+                app:boxBackgroundMode="none"
+                android:layout_marginTop="15dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
                     android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginEnd="10dp"
-                    android:layout_toStartOf="@+id/price_lay"
-                    android:background="@drawable/rectangle_sch">
-
-                    <EditText
-                        android:id="@+id/etName"
-                        style="@style/Widget.AppCompat.EditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:background="@color/transparent"
-                        android:hint="Name"
-                        android:paddingHorizontal="15dp"
-                        android:paddingVertical="3dp" />
-
-                </RelativeLayout>
-
-
-                <RelativeLayout
-                    android:id="@+id/price_lay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/rectangle_sch">
-
-                    <EditText
-                        android:id="@+id/etPrice"
-                        android:layout_width="85dp"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:background="@color/transparent"
-                        android:hint="Price"
-                        android:inputType="numberDecimal"
-                        android:paddingHorizontal="15dp"
-                        android:paddingVertical="3dp" />
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginEnd="15dp"
-                        android:layout_toEndOf="@id/etPrice"
-                        android:background="@drawable/dram_icon"
-                        android:backgroundTint="@color/green_dark" />
-
-
-                </RelativeLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/dmsansmedium"
+                    android:textSize="14dp"
+                    android:hint="Name"
+                    android:inputType="text"
+                    android:background="@drawable/input_bg"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="15dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@drawable/rectangle_sch"
-                android:paddingVertical="6dp">
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="none"
+                android:layout_marginTop="15dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/dmsansmedium"
+                    android:textSize="14dp"
+                    android:hint="Price"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/input_bg"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="15dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="none"
+                android:layout_marginTop="15dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@color/transparent"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/dmsansmedium"
+                    android:textSize="14dp"
                     android:hint="Description"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="3dp" />
+                    android:inputType="text"
+                    android:background="@drawable/input_bg"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="15dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rectangle_sch"
-                android:paddingVertical="6dp">
-
-                <EditText
-                    android:id="@+id/etCity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@color/transparent"
-                    android:hint="City"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="3dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rectangle_sch"
-                android:paddingVertical="6dp">
-
-                <EditText
-                    android:id="@+id/etRegion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@color/transparent"
-                    android:hint="Region"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="3dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rectangle_sch"
-                android:paddingVertical="6dp">
-
-                <EditText
-                    android:id="@+id/etStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:background="@color/transparent"
-                    android:hint="Status"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="3dp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/rectangle_sch"
-                android:paddingVertical="6dp">
-
-                <Spinner
-                    android:id="@+id/spinnerCategory"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:paddingHorizontal="15dp"
-                    android:paddingVertical="3dp" />
-            </RelativeLayout>
-
-
-            <LinearLayout
-                android:id="@+id/attributesContainer"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/spinnerCategory"
-                android:layout_marginTop="6dp"
-                android:orientation="vertical" />
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginTop="6dp">
-
-
-                <HorizontalScrollView
-                    android:id="@+id/horizontalScrollView"
+                app:boxBackgroundMode="none"
+                android:layout_marginTop="15dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCity"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:fillViewport="true"
-                    android:background="@drawable/rectangle_sch"
-                    android:scrollbars="none">
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/dmsansmedium"
+                    android:textSize="14dp"
+                    android:hint="City"
+                    android:inputType="text"
+                    android:background="@drawable/input_bg"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="15dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
-                        android:id="@+id/image_container"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:padding="8dp"/>
-
-                </HorizontalScrollView>
-
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:text="Select Images"
-                    android:textColor="@color/gray_dark"
-                    android:textSize="20dp" />
-
-
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginHorizontal="50dp">
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="none"
+                android:layout_marginTop="15dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etRegion"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/dmsansmedium"
+                    android:textSize="14dp"
+                    android:hint="Region"
+                    android:inputType="text"
+                    android:background="@drawable/input_bg"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="15dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <ImageButton
-                android:id="@+id/btnSelectImages"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/rectangle_sch"
-                android:backgroundTint="@color/green"/>
+                android:layout_height="wrap_content"
+                app:boxBackgroundMode="none"
+                android:layout_marginTop="15dp"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/dmsansmedium"
+                    android:textSize="14dp"
+                    android:hint="Status"
+                    android:inputType="text"
+                    android:background="@drawable/input_bg"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="15dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:text="Add Images"
-                    android:textColor="@color/white"
-                    android:textSize="20dp" />
 
-            </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@drawable/input_bg"
+                            android:layout_marginTop="15dp"
+                            android:paddingVertical="6dp">
+
+                            <Spinner
+                                android:id="@+id/spinnerCategory"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:paddingHorizontal="15dp"
+                                android:paddingVertical="3dp" />
+                        </RelativeLayout>
 
 
-            <Button
+                        <LinearLayout
+                            android:id="@+id/attributesContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/spinnerCategory"
+                            android:layout_marginTop="6dp"
+                            android:orientation="vertical" />
+
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginTop="6dp">
+
+
+                            <HorizontalScrollView
+                                android:id="@+id/horizontalScrollView"
+                                android:layout_width="match_parent"
+                                android:layout_height="150dp"
+                                android:fillViewport="true"
+                                android:background="@drawable/rectangle_sch"
+                                android:scrollbars="none">
+
+                                <LinearLayout
+                                    android:id="@+id/image_container"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:orientation="horizontal"
+                                    android:padding="8dp"/>
+
+                            </HorizontalScrollView>
+
+                            <TextView
+                                android:id="@+id/text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:text="Select Images"
+                                android:textColor="@color/gray_dark"
+                                android:textSize="18dp"
+                                android:fontFamily="@font/dmsansbold"/>
+
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginHorizontal="50dp">
+
+                        <ImageButton
+                            android:id="@+id/btnSelectImages"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:background="@drawable/rectangle_sch"
+                            android:backgroundTint="@color/green"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:text="Add Images"
+                                android:textColor="@color/white"
+                                android:textSize="14dp"
+                                android:fontFamily="@font/dmsansmedium"/>
+
+                        </RelativeLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_marginTop="30dp"
                 android:id="@+id/btnSubmit"
-                android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="50dp"
-                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
                 android:text="Submit Product"
-                android:textSize="20dp" />
-
-
+                android:fontFamily="@font/dmsansmedium"
+                android:backgroundTint="@color/green"
+                app:cornerRadius="14dp"
+                android:clickable="true"
+                android:focusable="true"/>
         </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:id="@+id/form_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical"-->
+<!--            android:padding="16dp">-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:paddingVertical="6dp">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/name_lay"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="45dp"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:layout_toStartOf="@+id/price_lay"-->
+<!--                    >-->
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/etName"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_centerVertical="true"-->
+<!--                        android:background="@drawable/input_bg"-->
+<!--                        android:hint="Name"-->
+<!--                        android:paddingHorizontal="15dp"-->
+<!--                        android:paddingVertical="3dp" />-->
+
+<!--                </RelativeLayout>-->
+
+
+<!--                <RelativeLayout-->
+<!--                    android:id="@+id/price_lay"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="45dp"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:background="@drawable/rectangle_sch">-->
+
+<!--                    <EditText-->
+<!--                        android:id="@+id/etPrice"-->
+<!--                        android:layout_width="85dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_centerVertical="true"-->
+<!--                        android:background="@color/transparent"-->
+<!--                        android:hint="Price"-->
+<!--                        android:inputType="numberDecimal"-->
+<!--                        android:paddingHorizontal="15dp"-->
+<!--                        android:paddingVertical="3dp" />-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/imageView2"-->
+<!--                        android:layout_width="15dp"-->
+<!--                        android:layout_height="15dp"-->
+<!--                        android:layout_centerVertical="true"-->
+<!--                        android:layout_marginEnd="15dp"-->
+<!--                        android:layout_toEndOf="@id/etPrice"-->
+<!--                        android:background="@drawable/dram_icon"-->
+<!--                        android:backgroundTint="@color/green_dark" />-->
+
+
+<!--                </RelativeLayout>-->
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:background="@drawable/rectangle_sch"-->
+<!--                android:paddingVertical="6dp">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/etDescription"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:hint="Description"-->
+<!--                    android:paddingHorizontal="15dp"-->
+<!--                    android:paddingVertical="3dp" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginTop="6dp"-->
+<!--                android:background="@drawable/rectangle_sch"-->
+<!--                android:paddingVertical="6dp">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/etCity"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:hint="City"-->
+<!--                    android:paddingHorizontal="15dp"-->
+<!--                    android:paddingVertical="3dp" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginTop="6dp"-->
+<!--                android:background="@drawable/rectangle_sch"-->
+<!--                android:paddingVertical="6dp">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/etRegion"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:hint="Region"-->
+<!--                    android:paddingHorizontal="15dp"-->
+<!--                    android:paddingVertical="3dp" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginTop="6dp"-->
+<!--                android:background="@drawable/rectangle_sch"-->
+<!--                android:paddingVertical="6dp">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/etStatus"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:hint="Status"-->
+<!--                    android:paddingHorizontal="15dp"-->
+<!--                    android:paddingVertical="3dp" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginTop="6dp"-->
+<!--                android:background="@drawable/rectangle_sch"-->
+<!--                android:paddingVertical="6dp">-->
+
+<!--                <Spinner-->
+<!--                    android:id="@+id/spinnerCategory"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:paddingHorizontal="15dp"-->
+<!--                    android:paddingVertical="3dp" />-->
+<!--            </RelativeLayout>-->
+
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/attributesContainer"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/spinnerCategory"-->
+<!--                android:layout_marginTop="6dp"-->
+<!--                android:orientation="vertical" />-->
+
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:layout_marginTop="6dp">-->
+
+
+<!--                <HorizontalScrollView-->
+<!--                    android:id="@+id/horizontalScrollView"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:fillViewport="true"-->
+<!--                    android:background="@drawable/rectangle_sch"-->
+<!--                    android:scrollbars="none">-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/image_container"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:padding="8dp"/>-->
+
+<!--                </HorizontalScrollView>-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/text"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Select Images"-->
+<!--                    android:textColor="@color/gray_dark"-->
+<!--                    android:textSize="20dp" />-->
+
+
+
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginTop="6dp"-->
+<!--                android:layout_marginHorizontal="50dp">-->
+
+<!--            <ImageButton-->
+<!--                android:id="@+id/btnSelectImages"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="@drawable/rectangle_sch"-->
+<!--                android:backgroundTint="@color/green"/>-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Add Images"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="20dp" />-->
+
+<!--            </RelativeLayout>-->
+
+
+<!--            <Button-->
+<!--                android:id="@+id/btnSubmit"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="60dp"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:layout_marginTop="50dp"-->
+<!--                android:gravity="center"-->
+<!--                android:text="Submit Product"-->
+<!--                android:textSize="20dp" />-->
+
+
+<!--        </LinearLayout>-->
 
     </ScrollView>
 

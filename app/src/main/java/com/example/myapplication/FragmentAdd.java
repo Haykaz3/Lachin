@@ -4,12 +4,14 @@ import static android.view.View.INVISIBLE;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -210,15 +212,16 @@ public class FragmentAdd extends Fragment {
             }
         }
     }
-    private void loadCategories()
-    {
+    private void loadCategories() {
         categoryService.getCategories(new CategoryService.CategoryServiceCallback() {
             @Override
             public void onCategoriesFetched(List<Category> categories) {
+                if (!isAdded()) return; // Fragment is not attached
+
                 categoryList = categories;
 
                 ArrayAdapter<Category> adapter = new ArrayAdapter<>(
-                        requireContext(),
+                        requireContext(), // safe now
                         android.R.layout.simple_spinner_item,
                         categories
                 );
@@ -228,28 +231,32 @@ public class FragmentAdd extends Fragment {
 
             @Override
             public void onFailure(String error) {
-                // Show error message
+                if (!isAdded()) return;
                 Toast.makeText(getContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
             }
         });
     }
-    private void loadAttributesForCategory(int categoryId)
-    {
+
+    private void loadAttributesForCategory(int categoryId) {
         attributesContainer.removeAllViews();
         attributeInputs.clear();
 
         attributeService.getAttributesByCategory(categoryId, new AttributeService.AttributeCallback() {
             @Override
             public void onAttributesFetched(List<AttributeDefinition> attributes) {
-                for (AttributeDefinition attribute : attributes)
-                {
+                if (!isAdded()) return;
+
+                for (AttributeDefinition attribute : attributes) {
                     TextView label = new TextView(getContext());
                     label.setText(attribute.name);
 
                     EditText input = new EditText(getContext());
-                    input.setHint("Enter " + attribute.name);
+                    input.setBackgroundResource(R.drawable.input_bg);
+                    input.setPadding(16, 15, 16, 15);
+                    input.setTop(15);
+                    input.setTextSize(14);
+                    input.setHint(attribute.name);
 
-                    attributesContainer.addView(label);
                     attributesContainer.addView(input);
                     attributeInputs.put(attribute.id, input);
                 }
@@ -257,10 +264,12 @@ public class FragmentAdd extends Fragment {
 
             @Override
             public void onFailure(String error) {
+                if (!isAdded()) return;
                 Toast.makeText(getContext(), "Error: " + error, Toast.LENGTH_SHORT).show();
             }
         });
     }
+
     private void submitProduct()
     {
         ProductDTO product = new ProductDTO();

@@ -20,7 +20,7 @@ import okhttp3.Response;
 
 public class AttributeServiceImpl implements AttributeService {
 
-    private static final String BASE_URL = "https://brkpgt18-7207.uks1.devtunnels.ms/";
+    private static final String BASE_URL = "https://tr4m9tkv-7207.euw.devtunnels.ms/";
     private final OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
     private final Handler mainHandler = new Handler(Looper.getMainLooper());

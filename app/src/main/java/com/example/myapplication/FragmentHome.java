@@ -80,28 +80,31 @@ public class FragmentHome extends Fragment {
 
 
         recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2)); // 2 columns like your screenshot
+        int itemWidthInDp = 190; // Desired item width in dp
+        float screenWidthDp = getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().density;
+        int spanCount = Math.max(1, (int) (screenWidthDp / itemWidthInDp));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), spanCount));
+        //recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2)); // 2 columns like your screenshot
         productService = new ProductServiceImpl();
         productList = new ArrayList<>();
         productService.getAll(new ProductService.ProductServiceCallback() {
             @Override
-            public void onProductFetched(Product product) {
-                // Not needed here
-            }
+            public void onProductFetched(Product product) {}
 
             @Override
             public void onProductsFetched(List<Product> products) {
-                // Update RecyclerView on UI thread
+                if (!isAdded()) return; // prevent crash if fragment is not attached
                 requireActivity().runOnUiThread(() -> {
-                    adapter = new ProductAdapter(products, getContext());
+                    adapter = new ProductAdapter(products, requireContext());
                     recyclerView.setAdapter(adapter);
                 });
             }
 
             @Override
             public void onFailure(String error) {
+                if (!isAdded()) return; // prevent crash
                 requireActivity().runOnUiThread(() ->
-                        Toast.makeText(getContext(), "Failed: " + error, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Failed: " + error, Toast.LENGTH_SHORT).show()
                 );
             }
         });

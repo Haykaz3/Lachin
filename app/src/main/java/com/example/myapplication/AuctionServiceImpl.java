@@ -18,7 +18,7 @@ public class AuctionServiceImpl implements AuctionService {
     private final Gson gson = new Gson();
     private final Handler handler = new Handler(Looper.getMainLooper());
 
-    private static final String BASE_URL = "https://hlrfbqc0-7207.euw.devtunnels.ms/";  // Change to your actual API URL
+    private static final String BASE_URL = "https://tr4m9tkv-7207.euw.devtunnels.ms/";  // Change to your actual API URL
     @Override
     public void getAuctionById(int auctionId, AuctionServiceCallback callback) {
         String url = BASE_URL + "auctions/" + auctionId;

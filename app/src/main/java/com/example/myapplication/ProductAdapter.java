@@ -1,12 +1,14 @@
 package com.example.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,12 +24,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView nameTextView, priceTextView, originalPriceTextView, discountTextView;
+        LinearLayout productCard;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
             priceTextView = itemView.findViewById(R.id.priceTextView);
+            productCard = itemView.findViewById(R.id.productCard);
         }
     }
 
@@ -54,6 +58,14 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         //holder.imageView.setImageResource(product.getImageResId());
         holder.nameTextView.setText(product.name);
         holder.priceTextView.setText("$" + product.price);
+        holder.productCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductActivity.class);
+                intent.putExtra("product_id", product.id);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

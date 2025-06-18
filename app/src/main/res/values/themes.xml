@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+    <style name="page_bg"><item name="android:background">#FFFFFF</item></style>
 </resources>
